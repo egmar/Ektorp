@@ -357,7 +357,7 @@
                 <jdk>[1.8,)</jdk>
             </activation>
             <properties>
-                <findbugs.plugin.version>3.0.0</findbugs.plugin.version>
+                <findbugs.plugin.version>3.0.5</findbugs.plugin.version>
             </properties>
         </profile>
         <profile>
