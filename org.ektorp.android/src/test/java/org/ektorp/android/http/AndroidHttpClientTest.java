@@ -3,7 +3,6 @@ package org.ektorp.android.http;
 import org.apache.http.*;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.params.ClientPNames;
-import org.apache.http.entity.HttpEntityWrapper;
 import org.apache.http.params.HttpParams;
 import org.ektorp.http.HttpResponse;
 import org.junit.Test;
@@ -24,7 +23,6 @@ public class AndroidHttpClientTest {
     public void shouldInvokeClientWhenGetWithStringParam() throws IOException {
         org.apache.http.HttpResponse expectedResponse = mock(org.apache.http.HttpResponse.class, new ThrowsException(new UnsupportedOperationException()));
 
-        doReturn("mock expectedResponse").when(expectedResponse).toString();
         doReturn(null).when(expectedResponse).getEntity();
         doReturn(new FakeStatusLine()).when(expectedResponse).getStatusLine();
         doReturn(null).when(expectedResponse).getFirstHeader("ETag");
@@ -51,7 +49,6 @@ public class AndroidHttpClientTest {
     public void shouldInvokeClientWhenPutWithStringParamAndHttpEntityParam() throws IOException {
         org.apache.http.HttpResponse expectedResponse = mock(org.apache.http.HttpResponse.class, new ThrowsException(new UnsupportedOperationException()));
 
-        doReturn("mock expectedResponse").when(expectedResponse).toString();
         doReturn(null).when(expectedResponse).getEntity();
         doReturn(new FakeStatusLine()).when(expectedResponse).getStatusLine();
         doReturn(null).when(expectedResponse).getFirstHeader("ETag");
@@ -80,7 +77,6 @@ public class AndroidHttpClientTest {
     public void shouldInvokeBackendWhenPostWithStringParamAndInputStreamParam() throws IOException {
         org.apache.http.HttpResponse expectedResponse = mock(org.apache.http.HttpResponse.class, new ThrowsException(new UnsupportedOperationException()));
 
-        doReturn("mock expectedResponse").when(expectedResponse).toString();
         doReturn(null).when(expectedResponse).getEntity();
         doReturn(new FakeStatusLine()).when(expectedResponse).getStatusLine();
         doReturn(null).when(expectedResponse).getFirstHeader("ETag");
@@ -100,7 +96,6 @@ public class AndroidHttpClientTest {
     public void shouldInvokeBackendWhenPostWithStringParamAndHttpEntityParam() throws IOException {
         org.apache.http.HttpResponse expectedResponse = mock(org.apache.http.HttpResponse.class, new ThrowsException(new UnsupportedOperationException()));
 
-        doReturn("mock expectedResponse").when(expectedResponse).toString();
         doReturn(null).when(expectedResponse).getEntity();
         doReturn(new FakeStatusLine()).when(expectedResponse).getStatusLine();
         doReturn(null).when(expectedResponse).getFirstHeader("ETag");

@@ -32,7 +32,6 @@ public class ViewBasedCollectionTest {
 	@Test
 	public void given_cascadeType_NONE_then_removed_element_should_not_be_added_to_pending_removal_list() {
 		setupHandlerAndProxy(getRefsWithCascadeNone());
-		proxy.size();
 		proxy.remove(child1);
 		assertTrue(collectionHandler.getPendingRemoval().isEmpty());
 	}
@@ -40,7 +39,6 @@ public class ViewBasedCollectionTest {
 	@Test
 	public void given_cascadeType_ALL_then_removed_element_should_be_added_to_pending_removal_list() {
 		setupHandlerAndProxy(getRefsWithCascadeAll());
-		proxy.size();
 		proxy.remove(child1);
 		assertEquals(1, collectionHandler.getPendingRemoval().size());
 	}
