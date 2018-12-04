@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.*;
 
+import java.io.InputStream;
 import java.util.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,7 +22,7 @@ public class CouchDbRepositorySupportTest {
 	public void setUp() throws Exception {
 		System.clearProperty(DesignDocument.UPDATE_ON_DIFF);
 		System.clearProperty(DesignDocument.AUTO_UPDATE_VIEW_ON_CHANGE);
-		
+
 		db = mock(CouchDbConnector.class, new ThrowsException(new UnsupportedOperationException("This interaction was not expected on this mock")));
         doNothing().when(db).createDatabaseIfNotExists();
 		repo = new CouchDbRepositorySupport<TestDoc>(TestDoc.class, db);
@@ -36,8 +37,12 @@ public class CouchDbRepositorySupportTest {
 	private void setupDesignDoc() throws Exception {
 		doReturn(Boolean.TRUE).when(db).contains("_design/TestDoc");
 		ObjectMapper om = new ObjectMapper();
-		DesignDocument dd = om.readValue(getClass().getResourceAsStream("design_doc.json"), DesignDocument.class);
-		doReturn(dd).when(db).get(DesignDocument.class, "_design/TestDoc");
+		try (
+			InputStream designDocResource = getClass().getResourceAsStream("design_doc.json")
+		) {
+			DesignDocument dd = om.readValue(designDocResource, DesignDocument.class);
+			doReturn(dd).when(db).get(DesignDocument.class, "_design/TestDoc");
+		}
 	}
 
 	@Test
